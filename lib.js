@@ -46,6 +46,19 @@ class Rancher {
 		}
 	}
 
+	// Create a new service inside a particular stack.
+	async createStackService(environmentId, stackId, name, labels, environmentVariables, image){
+		try{
+			let serviceObject = {stackId: stackId, startOnCreate: true, name: name, launchConfig: {labels: labels, environment: environmentVariables, imageUuid: image}}
+			let endpoint = this.baseUrl + '/v2-beta/projects/' + environmentId + '/services'
+			let response = await axios({url: endpoint, method: 'post', auth: {username: this.apiKey, password: this.apiSecret}, data: serviceObject})
+			return response.data
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+
 }
 
 exports.Rancher = Rancher
