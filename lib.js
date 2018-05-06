@@ -14,8 +14,16 @@ class Rancher {
 	async getStacks(){
 		let endpoint = this.baseUrl + '/v2-beta/stacks'
 		let response = await axios({url: endpoint, method: 'get', auth: {username: this.apiKey, password: this.apiSecret}})
-		console.log(response.data)
+		return response.data.data
 	}
+
+	// Get a list of services inside a particular stack. Accepts a stack ID.
+	async getStackServices(stackId){
+		let endpoint = this.baseUrl + '/v2-beta/stacks/' + stackId + '/services'
+		let response = await axios({url: endpoint, method: 'get', auth: {username: this.apiKey, password: this.apiSecret}})
+		return response.data.data
+	}
+
 }
 
 exports.Rancher = Rancher
