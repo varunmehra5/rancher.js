@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/rudimk/rancher.js/issues"
   },
-  "homepage": "https://github.com/rudimk/rancher.js#readme"
+  "homepage": "https://github.com/rudimk/rancher.js#readme",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
 }
