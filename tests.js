@@ -13,4 +13,17 @@ describe("Rancher.js tests: ", function(){
 			}
 		})
 	})
+
+	it("Get a list of all services in a random Rancher stack", function(){
+		cattleRustler.getStacks()
+		.then((stackResult) => {
+			cattleRustler.getStackServices(stackResult[0]['id'])
+			.then((serviceResult) => {
+				for(let service of serviceResult){
+					expect(service['id']).to.be.a('string')
+					console.log(`Service ID: ${service['id']} || Service Name: ${service['name']}`)
+				}
+			})
+		})
+	})
 })
