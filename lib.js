@@ -10,18 +10,40 @@ class Rancher {
 		this.apiSecret = apiSecret
 	}
 
+	// Get a list of environments.
+	async getEnvironments(){
+		try{
+			let endpoint = this.baseUrl + '/v2-beta/projects'
+			let response = await axios({url: endpoint, method: 'get', auth: {username: this.apiKey, password: this.apiSecret}})
+			return response.data.data
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+
 	// Get a list of stacks.
-	async getStacks(){
-		let endpoint = this.baseUrl + '/v2-beta/stacks'
-		let response = await axios({url: endpoint, method: 'get', auth: {username: this.apiKey, password: this.apiSecret}})
-		return response.data.data
+	async getStacks(environmentId){
+		try{
+			let endpoint = this.baseUrl + '/v2-beta/projects/' + environmentId + '/stacks'
+			let response = await axios({url: endpoint, method: 'get', auth: {username: this.apiKey, password: this.apiSecret}})
+			return response.data.data
+		}
+		catch(err){
+			console.log(err)
+		}
 	}
 
 	// Get a list of services inside a particular stack. Accepts a stack ID.
 	async getStackServices(stackId){
-		let endpoint = this.baseUrl + '/v2-beta/stacks/' + stackId + '/services'
-		let response = await axios({url: endpoint, method: 'get', auth: {username: this.apiKey, password: this.apiSecret}})
-		return response.data.data
+		try{
+			let endpoint = this.baseUrl + '/v2-beta/stacks/' + stackId + '/services'
+			let response = await axios({url: endpoint, method: 'get', auth: {username: this.apiKey, password: this.apiSecret}})
+			return response.data.data
+		}
+		catch(err){
+			console.log(err)
+		}
 	}
 
 }
