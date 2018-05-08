@@ -46,6 +46,7 @@ class Rancher {
 		}
 	}
 
+	// Create a stack.
 	async createStack(environmentId, name){
 		try{
 			let stackObject = {name: name}
@@ -65,6 +66,18 @@ class Rancher {
 			let endpoint = this.baseUrl + '/v2-beta/projects/' + environmentId + '/services'
 			let response = await axios({url: endpoint, method: 'post', auth: {username: this.apiKey, password: this.apiSecret}, data: serviceObject})
 			return response.data
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+
+	// Deactivate a particular service.
+	async stopService(environmentId, serviceId){
+		try{
+			let endpoint = this.baseUrl + '/v2-beta/projects/' + environmentId + '/services/' + serviceId + '?action=deactivate'
+			let response = await axios({url: endpoint, method: 'post', auth: {username: this.apiKey, password: this.apiSecret}})
+			return true
 		}
 		catch(err){
 			console.log(err)
