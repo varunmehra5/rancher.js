@@ -1,6 +1,6 @@
 {
   "name": "rancher.js",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A clean interface to Rancher 1.0's API.",
   "main": "lib.js",
   "scripts": {
