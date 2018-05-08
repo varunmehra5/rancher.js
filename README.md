@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/rudimk/rancher.js.svg?branch=master)](https://travis-ci.org/rudimk/rancher.js)
 
 # rancher.js
-A (hopefully?) awesome Javascript wrapper around the Rancher API for container orchestration.
+A (hopefully?) awesome Javascript wrapper around the Rancher 1 API(v2) for container orchestration.
 
 ## Usage
 
@@ -47,4 +47,27 @@ To get a list of services inside a stack:
 let services = await cattleRustler.getServices(stackId)
 ```
 
+### Creating stacks and services
 
+You can create a new stack by supplying the new stack's name and the intended environment's ID to the `createStack` method:
+
+```javascript
+// Inside an async function
+let newStack = await cattleRustler.createStack(environmentId, newStackName)
+```
+
+This creates a new stack and returns its details, including a stack ID. At this point, it's not possible to pass Docker and Rancher Compose files through `rancher.js`, although that's definitely an intended feature.
+
+To create a new service:
+
+```javascript
+// Inside an async function
+let newService = await cattleRustler.createStackService(environmentId, stackId, serviceName, labels, environmentVars, imageUuid)
+```
+
+Here, `labels` is a simple object containing label names and values as key-pairs. The same holds true for `environmentVars`. The `imageUuid` parameter is the Docker image you wish to spin the service from - so if you wish to spin up the official nginx image, the `imageUuid` would be `docker:nginx:latest`. Calling this method results in Rancher orchestrating the service and returning its service ID.
+
+
+## License
+
+[Here you go.](https://github.com/rudimk/rancher.js/blob/master/LICENSE)
