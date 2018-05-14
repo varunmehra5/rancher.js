@@ -51,15 +51,35 @@ describe("Rancher.js tests: ", function(){
 		})
 	})
 
-	it("Create a new stack service and then deactivate it", function(){
+	it("Create a new stack service and then deactivate/activate it", function(){
 		cattleRustler.createStackService('1a5', '1st5', uuid.v4(), { label1: 'value_one', label2: 'value_two' }, { API_KEY: 'value_one', API_SECRET: 'value_two' }, 'docker:nginx:latest')
 		.then((serviceResult) => {
 			expect(serviceResult['id']).to.be.a('string')
 			console.log(`New service ID: ${serviceResult['id']} || New Service Name: ${serviceResult['name']}`)
 			console.log('Deactivating service..')
 			cattleRustler.stopService('1a5', serviceResult['id'])
-			.then((result) => {
-				console.log(result)
+			.then((stopResult) => {
+				expect(stopResult.status).to.equal(true)
+				cattleRustler.startService('1a5', serviceResult['id'])
+				.then((startResult) => {
+					expect(startResult.status).to.equal(true)
+				})
+			})
+		})
+	})
+
+	it("Create a new stack and then deactivate/activate it", function(){
+		cattleRustler.createStack('1a5', uuid.v4())
+		.then((stackResult) => {
+			//expect(stackResult['id']).to.be.a('string')
+			console.log(`New Stack ID: ${stackResult['id']} || New Stack Name: ${stackResult['name']}`)
+			cattleRustler.stopStack('1a5', stackResult['id'])
+			.then((stopResult) => {
+				expect(stopResult.status).to.equal(true)
+				cattleRustler.startStack('1a5', stackResult['id'])
+				.then((startResult) => {
+					expect(startResult.status).to.equal(true)
+				})
 			})
 		})
 	})
