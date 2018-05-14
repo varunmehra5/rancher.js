@@ -1,3 +1,6 @@
+
+[![npm](https://img.shields.io/npm/v/npm.svg?style=plastic)](https://www.npmjs.com/package/rancher.js)
+
 [![Build Status](https://travis-ci.org/rudimk/rancher.js.svg?branch=master)](https://travis-ci.org/rudimk/rancher.js)
 
 # rancher.js
@@ -66,6 +69,8 @@ let newService = await cattleRustler.createStackService(environmentId, stackId, 
 ```
 
 Here, `labels` is a simple object containing label names and values as key-pairs. The same holds true for `environmentVars`. The `imageUuid` parameter is the Docker image you wish to spin the service from - so if you wish to spin up the official nginx image, the `imageUuid` would be `docker:nginx:latest`. Calling this method results in Rancher orchestrating the service and returning its service ID.
+
+Starting and stopping stacks and services is easy - just call the `startStack` and `stopStack` with an environment ID and a stack ID to start/stop a stack; for starting/stopping services, call `startService` and `stopService` with an environment ID and a service ID.
 
 
 ## License
