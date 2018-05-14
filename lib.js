@@ -77,7 +77,19 @@ class Rancher {
 		try{
 			let endpoint = this.baseUrl + '/v2-beta/projects/' + environmentId + '/services/' + serviceId + '?action=deactivate'
 			let response = await axios({url: endpoint, method: 'post', auth: {username: this.apiKey, password: this.apiSecret}})
-			return true
+			return {service: response.data, status: true}
+		}
+		catch(err){
+			console.log(err)
+		}
+	}
+
+	//Deactivate a stack.
+	async stopStack(environmentId, stackId){
+		try{
+			let endpoint = this.baseUrl + '/v2-beta/projects/' + environmentId + '/stacks/' + stackId + '?action=deactivateservices'
+			let response = await axios({url: endpoint, method: 'post', auth: {username: this.apiKey, password: this.apiSecret}})
+			return {stack: response.data, status: true}
 		}
 		catch(err){
 			console.log(err)

@@ -59,7 +59,19 @@ describe("Rancher.js tests: ", function(){
 			console.log('Deactivating service..')
 			cattleRustler.stopService('1a5', serviceResult['id'])
 			.then((result) => {
-				console.log(result)
+				expect(result.status).to.equal(true)
+			})
+		})
+	})
+
+	it("Create a new stack and then deactivate it", function(){
+		cattleRustler.createStack('1a5', uuid.v4())
+		.then((stackResult) => {
+			//expect(stackResult['id']).to.be.a('string')
+			console.log(`New Stack ID: ${stackResult['id']} || New Stack Name: ${stackResult['name']}`)
+			cattleRustler.stopStack('1a5', stackResult['id'])
+			.then((result) => {
+				expect(result.status).to.equal(true)
 			})
 		})
 	})
