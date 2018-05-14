@@ -84,8 +84,8 @@ class Rancher {
 		}
 	}
 
-	// Aactivate a particular service.
-	async stopService(environmentId, serviceId){
+	// Activate a particular service.
+	async startService(environmentId, serviceId){
 		try{
 			let endpoint = this.baseUrl + '/v2-beta/projects/' + environmentId + '/services/' + serviceId + '?action=activate'
 			let response = await axios({url: endpoint, method: 'post', auth: {username: this.apiKey, password: this.apiSecret}})
