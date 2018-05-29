@@ -63,7 +63,7 @@ To create a new service:
 
 ```javascript
 // Inside an async function
-let newService = await cattleRustler.createStackService(environmentId, stackId, serviceName, labels, environmentVars, imageUuid)
+let newService = await cattleRustler.createStackService(environmentId, stackId, scale, serviceName, labels, environmentVars, imageUuid)
 ```
 
 Here, `labels` is a simple object containing label names and values as key-pairs. The same holds true for `environmentVars`. The `imageUuid` parameter is the Docker image you wish to spin the service from - so if you wish to spin up the official nginx image, the `imageUuid` would be `docker:nginx:latest`. Calling this method results in Rancher orchestrating the service and returning its service ID.
