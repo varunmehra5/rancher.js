@@ -52,7 +52,7 @@ describe("Rancher.js tests: ", function(){
 	})
 
 	it("Create a new stack service and then deactivate/activate it", function(){
-		cattleRustler.createStackService('1a5', '1st5', uuid.v4(), { label1: 'value_one', label2: 'value_two' }, { API_KEY: 'value_one', API_SECRET: 'value_two' }, 'docker:nginx:latest')
+		cattleRustler.createStackService('1a5', '1st5', 1, uuid.v4(), { label1: 'value_one', label2: 'value_two' }, { API_KEY: 'value_one', API_SECRET: 'value_two' }, 'docker:nginx:latest')
 		.then((serviceResult) => {
 			expect(serviceResult['id']).to.be.a('string')
 			console.log(`New service ID: ${serviceResult['id']} || New Service Name: ${serviceResult['name']}`)
