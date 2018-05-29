@@ -1,6 +1,4 @@
 
-[![npm](https://img.shields.io/npm/v/npm.svg?style=plastic)](https://www.npmjs.com/package/rancher.js)
-
 [![Build Status](https://travis-ci.org/rudimk/rancher.js.svg?branch=master)](https://travis-ci.org/rudimk/rancher.js)
 
 # rancher.js
