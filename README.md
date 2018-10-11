@@ -1,6 +1,6 @@
 
 [![Build Status](https://travis-ci.org/rudimk/rancher.js.svg?branch=master)](https://travis-ci.org/rudimk/rancher.js)
-
+(We'll put in some cool shit here.)
 # rancher.js
 A (hopefully?) awesome Javascript wrapper around the Rancher 1 API(v2) for container orchestration.
 
